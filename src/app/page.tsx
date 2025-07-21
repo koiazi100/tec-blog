@@ -3,13 +3,12 @@ import { HeroPost } from "@/app/_components/hero-post";
 import { Intro } from "@/app/_components/intro";
 import { MoreStories } from "@/app/_components/more-stories";
 import { getAllPosts } from "@/lib/api";
-import 'zenn-content-css'
+import "zenn-content-css";
 
-export default function Index() {
-  const allPosts = getAllPosts();
+export default async function Index() {
+  const allPosts = await getAllPosts();
 
   const heroPost = allPosts[0];
-
   const morePosts = allPosts.slice(1);
 
   return (

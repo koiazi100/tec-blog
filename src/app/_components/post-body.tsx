@@ -1,4 +1,6 @@
 import markdownStyles from "./markdown-styles.module.css";
+import 'zenn-content-css'
+import React from "react";
 
 type Props = {
   content: string;

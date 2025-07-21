@@ -9,14 +9,15 @@
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
-    "next": "15.0.2",
+    "next": "^15.4.1",
+    "prismjs": "^1.30.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "remark": "^15.0.1",
+    "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",
-    "zenn-content-css": "0.1.106",
-    "zenn-embed-elements": "0.1.106",
-    "zenn-markdown-html": "0.1.106"
+    "zenn-content-css": "^0.1.106",
+    "zenn-embed-elements": "^0.1.106"
   },
   "devDependencies": {
     "@types/node": "^22.8.6",

@@ -17,7 +17,7 @@ export default async function TagPage({ params }: Props) {
   return (
     <Layout>
       <Container>
-        <h1 className="text-2xl font-bold mb-4">Tag: {tag}</h1>
+        <h1 className="inline-block text-2xl font-bold mb-3">Tag: {tag}</h1>
         <MoreStories posts={posts} />
       </Container>
     </Layout>

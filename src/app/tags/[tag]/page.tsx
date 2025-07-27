@@ -4,9 +4,15 @@ import Layout from "../../layout";
 import Container from "../../_components/container";
 import {MoreStories} from "../../_components/more-stories";
 
-export default async function TagPage({ params }: { params: { tag: string } }) {
-  const posts = await getPostsByTag(params.tag);
+type Props = {
+  params: {
+    tag: string;
+  };
+};
+
+export default async function TagPage({ params }: Props) {
   const tag = params.tag;
+  const posts: Post[] = await getPostsByTag(tag);
 
   return (
     <Layout>

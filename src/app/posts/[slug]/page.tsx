@@ -11,12 +11,11 @@ import { PostHeader } from "@/app/_components/post-header";
 import Script from "next/script";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 };
 
 export default async function Post({ params }: Props) {
-  const resolvedParams = await params; // await して解決する
-  const post = await getPostBySlug(resolvedParams.slug);
+  const post = await getPostBySlug(params.slug);
 
   if (!post) {
     return notFound();
@@ -50,8 +49,7 @@ export default async function Post({ params }: Props) {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const resolvedParams = await params;
-  const post = await getPostBySlug(resolvedParams.slug);
+  const post = await getPostBySlug(params.slug);
 
   if (!post) {
     return notFound();

@@ -1,8 +1,8 @@
-import {getAllTags, getPostsByTag} from "../../../lib/api";
-import {Post} from "../../../interfaces/post";
+import { getAllTags, getPostsByTag } from "@/lib/api";
+import { Post } from "@/interfaces/post";
 import Layout from "../../layout";
 import Container from "../../_components/container";
-import {MoreStories} from "../../_components/more-stories";
+import { MoreStories } from "../../_components/more-stories";
 
 type Props = {
   params: {
@@ -11,13 +11,12 @@ type Props = {
 };
 
 export default async function TagPage({ params }: Props) {
-  const tag = params.tag;
-  const posts: Post[] = await getPostsByTag(tag);
+  const posts: Post[] = await getPostsByTag(params.tag);
 
   return (
     <Layout>
       <Container>
-        <h1 className="inline-block text-2xl font-bold mb-3">Tag: {tag}</h1>
+        <h1 className="inline-block text-2xl font-bold mb-3">Tag: #{params.tag}</h1>
         <MoreStories posts={posts} />
       </Container>
     </Layout>
@@ -28,7 +27,7 @@ export default async function TagPage({ params }: Props) {
 export async function generateStaticParams() {
   const tags = await getAllTags();
 
-  return tags.map((tag: string) => ({
+  return tags.map((tag) => ({
     tag,
   }));
 }

@@ -10,16 +10,16 @@ import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 import Script from "next/script";
 
+// ✅ ここは Promise ではなく、直接オブジェクト型でOK
 type Props = {
-  params: { slug: string };
+  params: {
+    slug: string;
+  };
 };
 
 export default async function Post({ params }: Props) {
   const post = await getPostBySlug(params.slug);
-
-  if (!post) {
-    return notFound();
-  }
+  if (!post) return notFound();
 
   const content = await markdownToHtml(post.content || "");
 
@@ -39,7 +39,6 @@ export default async function Post({ params }: Props) {
           <PostBody content={content} />
         </article>
       </Container>
-
       <Script
         src="https://embed.zenn.studio/js/listen-embed-event.js"
         strategy="lazyOnload"
@@ -48,12 +47,11 @@ export default async function Post({ params }: Props) {
   );
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
-
-  if (!post) {
-    return notFound();
-  }
+  if (!post) return notFound();
 
   const title = `${post.title} | Next.js Blog Example with ${CMS_NAME}`;
 
@@ -68,7 +66,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
-
   return posts.map((post) => ({
     slug: post.slug,
   }));

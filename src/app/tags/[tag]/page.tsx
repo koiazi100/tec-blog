@@ -24,7 +24,9 @@ export default async function TagPage({ params }: Props) {
 }
 
 // 静的生成対象のタグ一覧を返す（旧 getStaticPaths 相当）
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<
+  { tag: string }[]
+> {
   const tags = await getAllTags();
 
   return tags.map((tag) => ({

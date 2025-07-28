@@ -48,7 +48,7 @@ export default async function Post({ params }: Props) {
 }
 
 export async function generateMetadata(
-  { params }: Props
+  { params }: { params: { slug: string } }
 ): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
   if (!post) return notFound();

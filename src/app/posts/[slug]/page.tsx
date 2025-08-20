@@ -47,7 +47,7 @@ export default async function Post({ params }: Props) {
 }
 
 export async function generateMetadata(
-  { params }: { params: { slug: string } } // ← 修正！
+  { params }: { params: { slug: string } } 
 ): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
   if (!post) return notFound();
@@ -63,9 +63,7 @@ export async function generateMetadata(
   };
 }
 
-export async function generateStaticParams(): Promise<
-  { slug: string }[]
-> {
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = await getAllPosts();
   return posts.map((post) => ({
     slug: post.slug,

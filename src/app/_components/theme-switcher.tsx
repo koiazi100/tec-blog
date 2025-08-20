@@ -32,9 +32,5 @@ export function ThemeSwitcher() {
     setMode(next);
   };
 
-  return (
-    <button onClick={handleClick} aria-label="Toggle theme">
-      Theme: {mode}
-    </button>
-  );
+
 }

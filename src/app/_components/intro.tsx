@@ -1,21 +1,31 @@
 import { CMS_NAME } from "@/lib/constants";
+import Image from "next/image"
 
 export function Intro() {
   return (
-    <section className="flex-col md:flex-row flex items-center md:justify-between mt-16 mb-16 md:mb-12">
-      <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8">
-       Blog.
-      </h1>
-      <h4 className="text-center md:text-left text-lg mt-5 md:pl-8">
-        A statically generated blog example using{" "}
-        <a
-          href="https://nextjs.org/"
-          className="underline hover:text-blue-600 duration-200 transition-colors"
-        >
-          Next.js
-        </a>{" "}
-        and {CMS_NAME}.
-      </h4>
+    <section className="relative w-screen h-64 mb-10">
+      {/* 背景画像レイヤー */}
+      <Image
+        src="/assets/top/top.jpeg"
+        alt="トップ画像"
+        fill
+        className="object-cover"
+        priority
+      />
+
+      {/* テキストレイヤー */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <h1 className="text-5xl md:text-7xl font-bold text-slate-600/100 drop-shadow-lg tracking-tighter leading-tight md:pr-8">
+         テックブログ
+        </h1>
+          <h4 className="text-center md:text-left text-lg mt-5 md:pl-8">
+          <a
+            href="https://nextjs.org/"
+            className="underline hover:text-blue-600 duration-200 transition-colors"
+          >
+          </a>{" "}
+          </h4>
+      </div>
     </section>
   );
 }

@@ -10,7 +10,6 @@ import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 import Script from "next/script";
 
-// ✅ ここは Promise ではなく、直接オブジェクト型でOK
 type Props = {
   params: {
     slug: string;
@@ -26,8 +25,8 @@ export default async function Post({ params }: Props) {
   return (
     <main>
       <Alert preview={post.preview} />
+      <Header />
       <Container>
-        <Header />
         <article className="pb-32">
           <PostHeader
             title={post.title}
@@ -48,7 +47,7 @@ export default async function Post({ params }: Props) {
 }
 
 export async function generateMetadata(
-  { params }: { params: { slug: string } }
+  { params }: { params: { slug: string } } // ← 修正！
 ): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
   if (!post) return notFound();
@@ -64,7 +63,9 @@ export async function generateMetadata(
   };
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<
+  { slug: string }[]
+> {
   const posts = await getAllPosts();
   return posts.map((post) => ({
     slug: post.slug,

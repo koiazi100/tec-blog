@@ -59,7 +59,6 @@ export default function RootLayout({
       <body
         className={cn(inter.className, "dark:bg-slate-900 dark:text-slate-400")}
       >
-        <ThemeSwitcher />
         <div className="min-h-screen bg-blue-100">{children}</div>
       </body>
     </html>

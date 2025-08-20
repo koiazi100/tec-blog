@@ -3,6 +3,7 @@ import { Post } from "@/interfaces/post";
 import Layout from "../../layout";
 import Container from "../../_components/container";
 import { MoreStories } from "../../_components/more-stories";
+import Header from "@/app/_components/header";
 
 type Props = {
   params: {
@@ -15,6 +16,7 @@ export default async function TagPage({ params }: Props) {
 
   return (
     <Layout>
+    <Header />
       <Container>
         <h1 className="inline-block text-2xl font-bold mb-3">Tag: #{params.tag}</h1>
         <MoreStories posts={posts} />

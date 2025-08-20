@@ -10,12 +10,11 @@ import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 import Script from "next/script";
 
-// 👇 PropsをNext.js標準のPagePropsで書く
-type PageProps = {
-  params: { slug: string }
-}
-
-export default async function PostPage({ params }: PageProps) {
+export default async function PostPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const post = await getPostBySlug(params.slug);
   if (!post) return notFound();
 
@@ -45,9 +44,11 @@ export default async function PostPage({ params }: PageProps) {
   );
 }
 
-export async function generateMetadata(
-  { params }: PageProps
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
   if (!post) return notFound();
 

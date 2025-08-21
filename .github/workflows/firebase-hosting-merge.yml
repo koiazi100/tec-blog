@@ -11,12 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: yarn install --immutable --immutable-cache --check-cache && yarn build
+        env: NEXT_SKIP_TYPE_CHECK:1
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TEC_BLOG_53776 }}
           projectId: tec-blog-53776
           channelId: live
-
-env:
-  NEXT_SKIP_TYPE_CHECK: 1

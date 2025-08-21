@@ -14,12 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: yarn
-
-      - run: yarn install --immutable --immutable-cache --check-cache
+      - name: Install dependencies
+        run: yarn install --immutable --immutable-cache --check-cache
 
       - name: Build Next.js
         run: yarn build

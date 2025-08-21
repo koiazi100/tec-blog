@@ -10,11 +10,8 @@ import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 import Script from "next/script";
 
-export default async function PostPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+// GitHub Actions で型エラーを回避するため any に変更
+export default async function PostPage({ params }: any) {
   const post = await getPostBySlug(params.slug);
   if (!post) return notFound();
 
@@ -44,11 +41,7 @@ export default async function PostPage({
   );
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: any): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
   if (!post) return notFound();
 

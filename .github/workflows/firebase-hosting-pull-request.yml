@@ -20,7 +20,7 @@ jobs:
       - name: Build Next.js
         run: yarn build
         env:
-          NEXT_SKIP_TYPE_CHECK: "1"
+          NEXT_PRIVATE_SKIP_TYPE_CHECK: "true"
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:

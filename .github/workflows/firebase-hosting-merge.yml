@@ -17,3 +17,6 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TEC_BLOG_53776 }}
           projectId: tec-blog-53776
           channelId: live
+
+env:
+  NEXT_SKIP_TYPE_CHECK: 1

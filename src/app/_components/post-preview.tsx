@@ -1,4 +1,3 @@
-import { type Author } from "@/interfaces/author";
 import Link from "next/link";
 import Avatar from "./avatar";
 import CoverImage from "./cover-image";
@@ -9,7 +8,6 @@ type Props = {
   coverImage: string;
   date: string;
   excerpt: string;
-  author: Author;
   slug: string;
 };
 
@@ -18,24 +16,25 @@ export function PostPreview({
   coverImage,
   date,
   excerpt,
-  author,
   slug,
 }: Props) {
   return (
-    <div>
-      <div className="mb-5">
+    <div className="flex flex-row items-start w-full h-48 overflow-auto border-2 rounded-xl border-gray-400 overflow-hidden">
+      <div className="w-48 h-48">
         <CoverImage slug={slug} title={title} src={coverImage} />
       </div>
-      <h3 className="text-3xl mb-3 leading-snug">
-        <Link href={`/posts/${slug}`} className="hover:underline">
-          {title}
-        </Link>
-      </h3>
-      <div className="text-lg mb-4">
-        <DateFormatter dateString={date} />
+      <div className="flex flex-col h-48 flex-1 ml-4">
+        <h3 className="flex-1 text-xl mt-5">
+          <Link as={`/posts/${slug}`} href="/posts/[slug]" className="hover:underline">
+            {title}
+          </Link>
+        </h3>
+        <div className="flex flex-1 flex-col">
+          <div className="font-bold text-xs my-auto mx-2">
+            <DateFormatter dateString={date} />
+          </div>
+        </div>
       </div>
-      <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
-      <Avatar name={author.name} picture={author.picture} />
     </div>
   );
 }

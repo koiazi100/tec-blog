@@ -7,22 +7,12 @@ import "zenn-content-css";
 
 export default async function Index() {
   const allPosts = await getAllPosts();
-
-  const heroPost = allPosts[0];
-  const morePosts = allPosts.slice(1);
+  const morePosts = allPosts.slice(0);
 
   return (
     <main>
+      <Intro />
       <Container>
-        <Intro />
-        <HeroPost
-          title={heroPost.title}
-          coverImage={heroPost.coverImage}
-          date={heroPost.date}
-          author={heroPost.author}
-          slug={heroPost.slug}
-          excerpt={heroPost.excerpt}
-        />
         {morePosts.length > 0 && <MoreStories posts={morePosts} />}
       </Container>
     </main>

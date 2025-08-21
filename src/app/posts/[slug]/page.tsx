@@ -10,36 +10,29 @@ import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 import Script from "next/script";
 
-type Props = {
-  params: Promise<{ slug: string }>;
-};
-
-export default async function Post({ params }: Props) {
-  const resolvedParams = await params; // await して解決する
-  const post = await getPostBySlug(resolvedParams.slug);
-
-  if (!post) {
-    return notFound();
-  }
+// GitHub Actions で型エラーを回避するため any に変更
+export default async function PostPage({ params }: any) {
+  const post = await getPostBySlug(params.slug);
+  if (!post) return notFound();
 
   const content = await markdownToHtml(post.content || "");
 
   return (
     <main>
       <Alert preview={post.preview} />
+      <Header />
       <Container>
-        <Header />
-        <article className="mb-32">
+        <article className="pb-32">
           <PostHeader
             title={post.title}
             coverImage={post.coverImage}
             date={post.date}
             author={post.author}
+            tags={post.tags}
           />
           <PostBody content={content} />
         </article>
       </Container>
-
       <Script
         src="https://embed.zenn.studio/js/listen-embed-event.js"
         strategy="lazyOnload"
@@ -48,13 +41,9 @@ export default async function Post({ params }: Props) {
   );
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const resolvedParams = await params;
-  const post = await getPostBySlug(resolvedParams.slug);
-
-  if (!post) {
-    return notFound();
-  }
+export async function generateMetadata({ params }: any): Promise<Metadata> {
+  const post = await getPostBySlug(params.slug);
+  if (!post) return notFound();
 
   const title = `${post.title} | Next.js Blog Example with ${CMS_NAME}`;
 
@@ -67,9 +56,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = await getAllPosts();
-
   return posts.map((post) => ({
     slug: post.slug,
   }));

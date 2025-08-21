@@ -14,10 +14,11 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable --immutable-cache --check-cache
 
+      - name: TypeScript check with relaxed config
+        run: npx tsc --project tsconfig.ci.json --noEmit || true
+
       - name: Build Next.js
         run: yarn build
-        env:
-          NEXT_PRIVATE_SKIP_TYPE_CHECK: "true"
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:

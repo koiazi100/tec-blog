@@ -16,9 +16,6 @@ jobs:
 
       - name: Build Next.js (skip type check)
         run: yarn build
-        env:
-          NEXT_TELEMETRY_DISABLED: "1"
-          NEXT_PRIVATE_SKIP_TYPE_CHECK: "true"
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:

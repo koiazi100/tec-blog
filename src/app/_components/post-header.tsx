@@ -1,5 +1,4 @@
 import Avatar from "./avatar";
-import CoverImage from "./cover-image";
 import DateFormatter from "./date-formatter";
 import { PostTitle } from "@/app/_components/post-title";
 import { type Author } from "@/interfaces/author";
@@ -9,26 +8,17 @@ type Props = {
   coverImage: string;
   date: string;
   author: Author;
-  tags?: string[];
 };
 
-export function PostHeader({ title, coverImage, date, author, tags }: Props) {
+export function PostHeader({ title, coverImage, date, author}: Props) {
   return (
     <>
       <PostTitle>{title}</PostTitle>
-      <div className="hidden md:block md:mb-12">
-        <Avatar name={author.name} picture={author.picture} />
-      </div>
-        <ul className="flex gap-x-2">
-          {tags?.map((tag) => (
-            <li key={tag} className="cursor-pointer block text-sm font-medium text-blue-700 hover:bg-blue-200 hover:shadow-sm font-bold mb-12  px-3 py-1 border border-blue-300 rounded-full"><a href={`/tags/${tag}`}
-            >#{tag}</a></li>
-))}
-        </ul>
-      <div className="mb-8 md:mb-16 sm:mx-0">
-        <CoverImage title={title} src={coverImage} />
-      </div>
+
       <div className="max-w-2xl mx-auto">
+        <div className="hidden md:block md:mb-6">
+          <Avatar name={author.name} picture={author.picture} />
+        </div>
         <div className="block md:hidden mb-6">
           <Avatar name={author.name} picture={author.picture} />
         </div>

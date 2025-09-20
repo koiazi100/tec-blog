@@ -2,15 +2,14 @@ import { CMS_NAME, HOME_OG_IMAGE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import cn from "classnames";
-import { ThemeSwitcher } from "./_components/theme-switcher";
 import 'zenn-content-css'
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: `Next.js Blog Example with ${CMS_NAME}`,
-  description: `A statically generated blog example using Next.js and ${CMS_NAME}.`,
+  title: `Next.jsと${CMS_NAME}で作る技術ブログ`,
+  description: `Next.jsと${CMS_NAME}を利用した技術ブログです。記事はMarkdownで書かれています。`,
   openGraph: {
     images: [HOME_OG_IMAGE_URL],
   },
@@ -22,18 +21,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ja">
       <head>
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/favicon/apple-touch-icon.png"
+          href="/favicon/favicon.ico"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="32x32"
-          href="/favicon/favicon-32x32.png"
+          href="/favicon/favicon.ico"
         />
         <link
           rel="icon"
@@ -44,7 +43,7 @@ export default function RootLayout({
         <link rel="manifest" href="/favicon/site.webmanifest" />
         <link
           rel="mask-icon"
-          href="/favicon/safari-pinned-tab.svg"
+          href="/favicon/favicon.ico"
           color="#000000"
         />
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
@@ -59,7 +58,7 @@ export default function RootLayout({
       <body
         className={cn(inter.className, "dark:bg-slate-900 dark:text-slate-400")}
       >
-        <div className="min-h-screen bg-blue-100">{children}</div>
+        <div className="min-h-screen bg-gray-100">{children}</div>
       </body>
     </html>
   );

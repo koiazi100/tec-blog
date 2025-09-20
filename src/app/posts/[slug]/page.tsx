@@ -28,9 +28,11 @@ export default async function PostPage({ params }: any) {
             coverImage={post.coverImage}
             date={post.date}
             author={post.author}
-            tags={post.tags}
           />
-          <PostBody content={content} />
+          <PostBody 
+          content={content}
+          tags={post.tags}
+          />
         </article>
       </Container>
       <Script

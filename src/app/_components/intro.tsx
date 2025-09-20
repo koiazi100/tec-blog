@@ -3,7 +3,7 @@ import Image from "next/image"
 
 export function Intro() {
   return (
-    <section className="relative w-screen h-64 mb-10">
+    <section className="relative w-screen h-48 mb-10">
       {/* 背景画像レイヤー */}
       <Image
         src="/assets/top/top.jpeg"
@@ -16,7 +16,7 @@ export function Intro() {
       {/* テキストレイヤー */}
       <div className="absolute inset-0 flex items-center justify-center">
         <h1 className="text-5xl md:text-7xl font-bold text-slate-600/100 drop-shadow-lg tracking-tighter leading-tight md:pr-8">
-         テックブログ
+         こいあじ Tech Notes
         </h1>
           <h4 className="text-center md:text-left text-lg mt-5 md:pl-8">
           <a

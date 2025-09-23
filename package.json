@@ -16,8 +16,9 @@
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",
-    "zenn-content-css": "^0.1.106",
-    "zenn-embed-elements": "^0.1.106"
+    "zenn-content-css": "^0.2.3",
+    "zenn-embed-elements": "^0.1.106",
+    "zenn-markdown-html": "^0.2.3"
   },
   "devDependencies": {
     "@types/node": "^22.8.6",

@@ -13,7 +13,7 @@ import { ZennEmbedClient } from "@/app/_components/ZennEmbedClient"; // ← 修�
 
 // ✅ サーバーコンポーネント (use client は書かない)
 export default async function PostPage({ params }: { params: { slug: string } }) {
-  const { slug } = await params; // ← await で警告回避
+  const { slug } = params; // ← await で警告回避
   const post = await getPostBySlug(slug);
 
   if (!post) return notFound();
@@ -53,7 +53,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const { slug } = await params; // ← 同様に await
+  const { slug } = params; // ← 同様に await
   const post = await getPostBySlug(slug);
 
   if (!post) return notFound();

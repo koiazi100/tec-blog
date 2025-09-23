@@ -12,8 +12,9 @@ import Script from "next/script";
 import { ZennEmbedClient } from "@/app/_components/ZennEmbedClient"; // ← 修正パス
 
 // ✅ サーバーコンポーネント (use client は書かない)
-export default async function PostPage({ params }: { params: { slug: string } }) {
-  const { slug } = params; // ← await で警告回避
+export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params
+  const slug = resolvedParams.slug
   const post = await getPostBySlug(slug);
 
   if (!post) return notFound();
@@ -50,10 +51,11 @@ export default async function PostPage({ params }: { params: { slug: string } })
 
 export async function generateMetadata({
   params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
-  const { slug } = params; // ← 同様に await
+}: 
+  { params: Promise<{ slug: string }> }
+): Promise<Metadata> {
+  const resolvedParams = await params
+  const slug = resolvedParams.slug
   const post = await getPostBySlug(slug);
 
   if (!post) return notFound();
@@ -62,7 +64,6 @@ export async function generateMetadata({
 
   return {
     title,
-    metadataBase: new URL("https://tec-blog-53776.web.app"), 
     openGraph: {
       title,
       images: [post.ogImage.url],
